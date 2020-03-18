@@ -1,6 +1,6 @@
 CC 	= gcc
 OBJS 	= multiplication.o
-CFLAGS 	= -c -Wall -ansi -pedantic -g
+CFLAGS 	= -c -Wall -ansi -pedantic -D_POSIX_C_SOURCE
 LDFLAGS =
 PGM 	= multiplication
 
