@@ -1,5 +1,5 @@
 CC 	= gcc
-OBJS 	= ls.o
+OBJS 	= myls.o
 CFLAGS 	= -c -Wall -ansi -pedantic -D_POSIX_C_SOURCE
 LDFLAGS =
 PGM 	= multiplication

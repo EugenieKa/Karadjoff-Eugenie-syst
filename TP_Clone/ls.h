@@ -1,5 +1,5 @@
-#ifndef _ls
-#define _ls
+#ifndef _myls
+#define _myls
 
 #define CHAR_MAX 50
 #define FIC_MAX 200
@@ -14,15 +14,14 @@ typedef struct DIR {
   Fichier tab[FIC_MAX];
 } DIR
 
-void opendir();
+struct dirent{
+  DIR[0]
+} dirent
 
-void readdir();
+void opendir(DIR* nom_rep);
 
-closedir();
+void readdir(DIR* nom_rep);
 
-#endif
-
-
-
+void closedir(DIR* nom_rep);
 
 #endif
