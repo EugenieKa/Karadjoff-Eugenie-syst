@@ -5,8 +5,7 @@
 #define TAILLE_MAX 200
 
 typedef struct DIR {
-  char d_name[CHAR_MAX];
-  int d_inode;
+  char nom[CHAR_MAX];
 } DIR
 
 void opendir(DIR* nom_rep);
