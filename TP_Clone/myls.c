@@ -8,8 +8,8 @@
 
 int main()
 {
-  DIR* repertoire = NULL;
-  struct dirent* fichierAlire =  NULL;
+  DIR *repertoire = NULL;
+  struct dirent *fichierAlire =  NULL;
 
   repertoire = opendir("./dir_example");
 
@@ -20,9 +20,9 @@ int main()
 
   while(fichierAlire)
   {
-    printf("nom du fichier %s, numero inode %d", fichierAlire->d_name, fichierAlire->d_ino);
+    printf("nom du fichier %s, numero inode %d\n", repertoire->d_name, repertoire->d_ino);
   }
-  
+
   closedir(repertoire);
   repertoire = NULL;
 
