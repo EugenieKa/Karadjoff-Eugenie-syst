@@ -20,9 +20,11 @@ int main()
 
   while(fichierAlire)
   {
-    printf("nom du fichier %s, numero inode %d", fichierAlire.d_name[256], fichierAlire.d_ino);
+    printf("nom du fichier %s, numero inode %d", fichierAlire->d_name, fichierAlire->d_ino);
   }
+  
   closedir(repertoire);
+  repertoire = NULL;
 
  return 0;
 }
