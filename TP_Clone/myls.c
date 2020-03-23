@@ -11,16 +11,18 @@ int main()
   DIR* repertoire = NULL;
   struct dirent* fichierAlire =  NULL;
 
-  repertoire = opendir("./dir_example")
+  repertoire = opendir("./dir_example");
 
   if(repertoire == NULL)
   exit(1);
 
-  while(repertoire)
+  fichierAlire = readdir(repertoire);
+
+  while(fichierAlire)
   {
-    fichierAlire = readdir(repertoire);
-    printf("nom du fichier %s, numero inode %d", nom_fic, inode);
+    printf("nom du fichier %s, numero inode %d", fichierAlire.d_name[256], fichierAlire.d_ino);
   }
+  closedir(repertoire);
 
  return 0;
 }
