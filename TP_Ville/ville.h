@@ -6,13 +6,15 @@
 typedef struct Elt {
   char nom_ville[CHAR_MAX];
   long code_postal;
-  struct Elt *successeur;
+  struct Elt *suc;
 } Element ;
 
 typedef struct Elt *Liste;
 
-Liste ville_liste_initialiser();
+Liste ville_initialiser(Liste l);
 
-Liste ville_liste_inserer_elt();
+Liste ville_inserer_elt(Liste l, Element elt);
+
+void liste_afficher(Liste l);
 
 #endif
