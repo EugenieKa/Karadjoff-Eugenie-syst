@@ -2,11 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-Liste ville_initialiser(Liste l)
-{
-  return(NULL);
-}
-
+/** fonction insertion d'element dans un liste d'elements **/
 Liste ville_inserer_elt(Liste l, Element elt)
 {
   Liste e;
@@ -15,52 +11,55 @@ Liste ville_inserer_elt(Liste l, Element elt)
     printf("Allocation memoire impossible\n");
     exit(1);
   }
-
+  else
   e->nom_ville[CHAR_MAX] = elt.nom_ville[CHAR_MAX];
-  e->code_postal = elt.code_postal;
+  e->code_postal[CHAR_CODE] = elt.code_postal[CHAR_CODE];
   e->suc = l;
+
   return (e);
 }
 
-void afficher_liste(Liste l)
+/** fonction affichage de liste **/
+void ville_liste_afficher(Liste l)
 {
   if(!l)
   {
     printf("Liste vide \n");
+    exit(1);
   }
   else
   {
     while(l != NULL)
     {
-        printf("%s", l);
+        printf("%s", l->nom_ville);
+        printf("%s", l->code_postal);
         l = l->suc;
     }
     printf("\n");
   }
 }
 
+/** main qui lit le fichier - extraction des donnees pour les mettre dans une liste en cours **/
 int main()
 {
-  char ville[CHAR_MAX];
-  long cp;
   Liste villes;
-  Element elt;
-
   FILE *fichier = NULL;
-  ville_initialiser(villes);
+  Element elt;
 
 
   fichier = fopen("./fic_ville.txt", "r");
 
+  if(fichier == NULL)
+  printf("Fichier illisible\n");
+
   while(fichier != NULL)
-  {
-
-    fscanf(fichier, "%s", &elt.nom_ville);
-    fscanf(fichier, "%ld", &elt.code_postal);
-    ville_inserer_elt(villes, elt);
-  }
-
-  afficher_liste(villes);
+    {
+        fgets(elt.nom_ville, CHAR_MAX, fichier);
+        printf("%s", elt.nom_ville);
+        fgets(elt.code_postal, CHAR_CODE, fichier);
+        printf("%s", elt.code_postal);
+    }
+/** cloture du programme en cours **/
 
   fclose(fichier);
   fichier = NULL;

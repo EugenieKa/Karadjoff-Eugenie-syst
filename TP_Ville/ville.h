@@ -1,20 +1,19 @@
 #ifndef _ville
 #define _ville
 
-#define CHAR_MAX 50
+#define CHAR_MAX 20
+#define CHAR_CODE 5
 
 typedef struct Elt {
   char nom_ville[CHAR_MAX];
-  long code_postal;
+  char code_postal[CHAR_CODE];
   struct Elt *suc;
 } Element ;
 
 typedef struct Elt *Liste;
 
-Liste ville_initialiser(Liste l);
-
 Liste ville_inserer_elt(Liste l, Element elt);
 
-void liste_afficher(Liste l);
+void ville_liste_afficher(Liste l);
 
 #endif
