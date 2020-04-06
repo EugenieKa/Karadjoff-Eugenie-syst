@@ -1,7 +1,7 @@
-#ifndef _ville
-#define _ville
+#ifndef ville_h
+#define ville_h
 
-#define CHAR_MAX 20
+#define CHAR_MAX 10
 #define CHAR_CODE 5
 
 typedef struct Elt {
@@ -15,5 +15,6 @@ typedef struct Elt *Liste;
 Liste ville_inserer_elt(Liste l, Element elt);
 
 void ville_liste_afficher(Liste l);
+
 
 #endif

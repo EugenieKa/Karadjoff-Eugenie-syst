@@ -1,8 +1,16 @@
 #include "ville.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
-/** fonction insertion d'element dans un liste d'elements **/
+
+
+Liste ville_liste_initialiser()
+{
+  return(NULL);
+}
+
+
 Liste ville_inserer_elt(Liste l, Element elt)
 {
   Liste e;
@@ -13,13 +21,13 @@ Liste ville_inserer_elt(Liste l, Element elt)
   }
   else
   e->nom_ville[CHAR_MAX] = elt.nom_ville[CHAR_MAX];
-  e->code_postal[CHAR_CODE] = elt.code_postal[CHAR_CODE];
+  e->code_postal[CHAR_CODE]= elt.code_postal[CHAR_CODE];
   e->suc = l;
 
   return (e);
 }
 
-/** fonction affichage de liste **/
+
 void ville_liste_afficher(Liste l)
 {
   if(!l)
@@ -29,10 +37,10 @@ void ville_liste_afficher(Liste l)
   }
   else
   {
-    while(l != NULL)
+    while(l)
     {
         printf("%s", l->nom_ville);
-        printf("%s", l->code_postal);
+        printf("%s\n", l->code_postal);
         l = l->suc;
     }
     printf("\n");
@@ -46,23 +54,30 @@ int main()
   FILE *fichier = NULL;
   Element elt;
 
+  char word[256];
+
 
   fichier = fopen("./fic_ville.txt", "r");
 
   if(fichier == NULL)
-  printf("Fichier illisible\n");
+  {
+      puts("Fichier illisible\n");
+      exit(1);
+  }
 
-  while(fichier != NULL)
-    {
-        fgets(elt.nom_ville, CHAR_MAX, fichier);
-        printf("%s", elt.nom_ville);
-        fgets(elt.code_postal, CHAR_CODE, fichier);
-        printf("%s", elt.code_postal);
-    }
-/** cloture du programme en cours **/
+  /** extraction mot à mot en cours **/
+  while(!feof(fichier))
+  {
+       fscanf(fichier, "%s", word);
+       printf("%s\n", word);
+       strcpy(elt.nom_ville, word);
 
-  fclose(fichier);
-  fichier = NULL;
+  }
+
+/**
+    ville_liste_afficher(villes);
+**/
+    fichier = NULL;
 
  return 0;
 }
