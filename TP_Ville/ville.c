@@ -3,32 +3,40 @@
 #include <stdlib.h>
 #include <string.h>
 
-
-
-Liste ville_liste_initialiser()
+Liste villes_initialiser()
 {
-  return(NULL);
+    Liste *l = malloc(sizeof(*Liste));
+    Element *e = malloc(sizeof(*Element))
+
+    if(l == NULL || e == NULL)
+    {
+        exit(1);
+    }
+
+    e->nom_ville[CHAR_MAX] = NULL;
+    e->code_postal[CHAR_CODE]= NULL;
+    l->tete = e;
+    e_>suc = NULL;
+
+    return(l);
 }
 
-
-Liste ville_inserer_elt(Liste l, Element elt)
+void villes_inserer(Liste *l, char ville, char cp)
 {
-  Liste e;
-  e = (Liste) malloc(sizeof(Element));
-  if (e == NULL) {
+  Element *elt = malloc(sizeof(*elt));
+  if (l == NULL || elt == NULL) {
     printf("Allocation memoire impossible\n");
     exit(1);
   }
   else
-  e->nom_ville[CHAR_MAX] = elt.nom_ville[CHAR_MAX];
-  e->code_postal[CHAR_CODE]= elt.code_postal[CHAR_CODE];
-  e->suc = l;
-
-  return (e);
+  elt->nom_ville[CHAR_MAX] = ville[CHAR_MAX];
+  elt->code_postal[CHAR_CODE]= cp[CHAR_CODE];
+  l->tete = elt;
+  elt->suc = NULL;
 }
 
 
-void ville_liste_afficher(Liste l)
+void villes_afficher(Liste *l)
 {
   if(!l)
   {
@@ -37,24 +45,24 @@ void ville_liste_afficher(Liste l)
   }
   else
   {
-    while(l)
-    {
-        printf("%s", l->nom_ville);
-        printf("%s\n", l->code_postal);
-        l = l->suc;
-    }
+      Element *elt = l->tete;
+      while(elt)
+        {
+            printf("ville :%s\n", elt->nom_ville);
+            printf("code postal :%s\n", elt->code_postal);
+            elt = elt->suc;
+      }
     printf("\n");
   }
 }
 
-/** main qui lit le fichier - extraction des donnees pour les mettre dans une liste en cours **/
+
 int main()
 {
-  Liste villes;
+  Liste *villes = villes_initialiser();
   FILE *fichier = NULL;
-  Element elt;
-
-  char word[256];
+  char ville[CHAR_MAX];
+  char cp[CHAR_CODE];
 
 
   fichier = fopen("./fic_ville.txt", "r");
@@ -65,19 +73,20 @@ int main()
       exit(1);
   }
 
-  /** extraction mot à mot en cours **/
   while(!feof(fichier))
   {
-       fscanf(fichier, "%s", word);
-       printf("%s\n", word);
-       strcpy(elt.nom_ville, word);
+      fscanf(fichier, "%s\n", ville);
+      strcpy(newville, ville);
+      fscanf(fichier, "%s\n", cp);
+      strcpy(newcp, cp);
 
+      villes_inserer(villes, newville, newcp);
   }
 
-/**
-    ville_liste_afficher(villes);
-**/
-    fichier = NULL;
+  villes_afficher(villes);
+
+  fclose(fichier);
+  fichier = NULL;
 
  return 0;
 }

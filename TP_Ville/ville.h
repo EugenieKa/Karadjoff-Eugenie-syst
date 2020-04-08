@@ -4,17 +4,25 @@
 #define CHAR_MAX 10
 #define CHAR_CODE 5
 
-typedef struct Elt {
-  char nom_ville[CHAR_MAX];
-  char code_postal[CHAR_CODE];
-  struct Elt *suc;
-} Element ;
+typedef struct Element Elt;
+struct Element
+{
+    char nom_ville[CHAR_MAX];
+    char code_postal[CHAR_CODE];
+    Elt *suc;
+};
 
-typedef struct Elt *Liste;
+typedef struct Liste Liste;
+struct List
+{
+    Elt *tete;
+};
 
-Liste ville_inserer_elt(Liste l, Element elt);
+Liste villes_initialiser();
 
-void ville_liste_afficher(Liste l);
+void villes_inserer(Liste l, char ville, char cp);
+
+void villes_liste_afficher(Liste l);
 
 
 #endif
