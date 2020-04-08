@@ -8,39 +8,27 @@ Liste ville_liste_initialiser()
     return NULL;
 }
 
-Liste ville_liste_inserer(Liste l, Element elt)
+void ville_liste_inserer(Liste l, Element e)
 {
-    Element* e = malloc(sizeof(Element));
-    if (e == NULL)
-        {
-            printf("Allocation impossible...\n");
-            exit(1);
-        }
-    else
-        {
-            e->nom_ville[CHAR_MAX] = elt.nom_ville[CHAR_MAX];
-            e->code_postal[CHAR_CODE]= elt.code_postal[CHAR_CODE];
-            e->suc = l;
-        }
+   Liste l = (Liste) malloc(sizeof(Liste));
+   Element e = malloc(sizeof(Element));
 
-    return(e);
 }
 
 void ville_liste_afficher(Liste l)
 {
-    Element *tmp = l;
-    if(!tmp)
+    if(l)
     {
         printf("Liste vide \n");
         exit(1);
     }
     else
     {
-      while(tmp)
+      while(l)
         {
-            printf("ville :%s\n", tmp->nom_ville);
-            printf("code postal :%s\n", tmp->code_postal);
-            tmp = tmp->suc;
+            printf("ville :%s\n", l->nom_ville);
+            printf("code postal :%s\n", l->code_postal);
+            l = l->suc;
       }
     printf("\n");
   }
@@ -66,15 +54,15 @@ int main()
   while(!feof(fichier))
   {
       Element elt;
-      fscanf(fichier, "%s\n", ville);
-      strcpy(elt.nom_ville, ville);
-      fscanf(fichier, "%s\n", cp);
-      strcpy(elt.code_postal, cp);
+      fscanf(fichier, "%s\n", elt.nom_ville);
+      printf("%s\n", elt.nom_ville);
 
-      ville_liste_inserer(villes, elt);
+      fscanf(fichier, "%s\n", elt.code_postal);
+      printf("%s\n", elt.code_postal);
+
+
+
   }
-
-  ville_liste_afficher(villes);
 
   fclose(fichier);
   fichier = NULL;

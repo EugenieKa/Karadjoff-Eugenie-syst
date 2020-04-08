@@ -1,7 +1,7 @@
 #ifndef ville_h
 #define ville_h
 
-#define CHAR_MAX 10
+#define CHAR_MAX 50
 #define CHAR_CODE 5
 
 typedef struct Elt{
