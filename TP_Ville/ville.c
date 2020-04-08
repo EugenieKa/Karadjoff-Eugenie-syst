@@ -3,54 +3,44 @@
 #include <stdlib.h>
 #include <string.h>
 
-Liste villes_initialiser()
+Liste ville_liste_initialiser()
 {
-    Liste *l = malloc(sizeof(*Liste));
-    Element *e = malloc(sizeof(*Element))
+    return NULL;
+}
 
-    if(l == NULL || e == NULL)
+Liste ville_liste_inserer(Liste l, Element elt)
+{
+    Element* e = malloc(sizeof(Element));
+    if (e == NULL)
+        {
+            printf("Allocation impossible...\n");
+            exit(1);
+        }
+    else
+        {
+            e->nom_ville[CHAR_MAX] = elt.nom_ville[CHAR_MAX];
+            e->code_postal[CHAR_CODE]= elt.code_postal[CHAR_CODE];
+            e->suc = l;
+        }
+
+    return(e);
+}
+
+void ville_liste_afficher(Liste l)
+{
+    Element *tmp = l;
+    if(!tmp)
     {
+        printf("Liste vide \n");
         exit(1);
     }
-
-    e->nom_ville[CHAR_MAX] = NULL;
-    e->code_postal[CHAR_CODE]= NULL;
-    l->tete = e;
-    e_>suc = NULL;
-
-    return(l);
-}
-
-void villes_inserer(Liste *l, char ville, char cp)
-{
-  Element *elt = malloc(sizeof(*elt));
-  if (l == NULL || elt == NULL) {
-    printf("Allocation memoire impossible\n");
-    exit(1);
-  }
-  else
-  elt->nom_ville[CHAR_MAX] = ville[CHAR_MAX];
-  elt->code_postal[CHAR_CODE]= cp[CHAR_CODE];
-  l->tete = elt;
-  elt->suc = NULL;
-}
-
-
-void villes_afficher(Liste *l)
-{
-  if(!l)
-  {
-    printf("Liste vide \n");
-    exit(1);
-  }
-  else
-  {
-      Element *elt = l->tete;
-      while(elt)
+    else
+    {
+      while(tmp)
         {
-            printf("ville :%s\n", elt->nom_ville);
-            printf("code postal :%s\n", elt->code_postal);
-            elt = elt->suc;
+            printf("ville :%s\n", tmp->nom_ville);
+            printf("code postal :%s\n", tmp->code_postal);
+            tmp = tmp->suc;
       }
     printf("\n");
   }
@@ -59,7 +49,7 @@ void villes_afficher(Liste *l)
 
 int main()
 {
-  Liste *villes = villes_initialiser();
+  Liste villes = ville_liste_initialiser();
   FILE *fichier = NULL;
   char ville[CHAR_MAX];
   char cp[CHAR_CODE];
@@ -75,15 +65,16 @@ int main()
 
   while(!feof(fichier))
   {
+      Element elt;
       fscanf(fichier, "%s\n", ville);
-      strcpy(newville, ville);
+      strcpy(elt.nom_ville, ville);
       fscanf(fichier, "%s\n", cp);
-      strcpy(newcp, cp);
+      strcpy(elt.code_postal, cp);
 
-      villes_inserer(villes, newville, newcp);
+      ville_liste_inserer(villes, elt);
   }
 
-  villes_afficher(villes);
+  ville_liste_afficher(villes);
 
   fclose(fichier);
   fichier = NULL;
