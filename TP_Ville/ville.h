@@ -14,7 +14,9 @@ typedef struct Elt* Liste;
 
 Liste ville_liste_initialiser();
 
-Liste ville_liste_tete_inserer(Liste l, Element elt);
+Liste ville_liste_tete_inserer(Liste l, char nom, char cp);
+
+Liste liste_queue_inserer(Liste l, char nom, char cp);
 
 void ville_liste_afficher(Liste l);
 
