@@ -18,7 +18,10 @@ Liste ville_liste_tete_inserer(Liste l, char nom, char cp);
 
 Liste liste_queue_inserer(Liste l, char nom, char cp);
 
+void ville_liste_afficher_tri(Liste l);
+
 void ville_liste_afficher(Liste l);
 
+Liste liste_liberer(Liste l);
 
 #endif
