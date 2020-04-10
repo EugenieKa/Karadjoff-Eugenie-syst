@@ -2,7 +2,7 @@
 #define ville_h
 
 #define CHAR_MAX 50
-#define CHAR_CODE 5
+#define CHAR_CODE 6
 
 typedef struct Elt{
     char nom_ville[CHAR_MAX];
